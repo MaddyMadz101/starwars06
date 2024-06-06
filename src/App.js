@@ -10,6 +10,7 @@ function App() {
       <h1>Search Text: {searchText}</h1>
       <button onClick={()=>{ dispatch(showVehicles())}}>Show Vehicles</button>
       {vehicleVisibility ? <h3>Vechicles</h3> : <h3>shh its hidden</h3>}
+      <p>Testing</p>
     </div>
   );
 }
