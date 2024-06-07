@@ -27,7 +27,7 @@ export default function useFetch() {
         };
 
         fetchData();
-    }, [searchTerm, page, dispatch]); 
+    }, [stringPage, searchTerm, page, dispatch]); 
     const refetchData = () => {
 
     };
