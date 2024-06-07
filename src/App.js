@@ -1,18 +1,40 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { showVehicles } from "./actions";
-function App() {
-  const searchText = useSelector(state => state.searchText);
-  const vehicleVisibility = useSelector(state => state.vehicleVisibility);
-  const dispatch = useDispatch();
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { useSelector } from "react-redux";
+import { Typography } from "@mui/material";
+import useFetch from "./Fetch/FetchPeople";
+import { PeopleList } from "./Components/PeopleList";
+import { SearchBar } from "./Components/SearchBar";
+import { Pages } from "./Components/Pages";
+ 
+export default function App() {
+  const count = useSelector((state) => state.count);
+  useFetch();
   return (
-    <div className="App">
-      <h1>Search Text: {searchText}</h1>
-      <button onClick={()=>{ dispatch(showVehicles())}}>Show Vehicles</button>
-      {vehicleVisibility ? <h3>Vechicles</h3> : <h3>shh its hidden</h3>}
-      <p>Testing</p>
-    </div>
+    
+    <Box sx={{ flexGrow: 2 }}>
+   
+      <Grid container spacing={2} sx={{ m: 2 }}>
+        
+        <Grid xs={2}></Grid>
+        <Grid xs={8} >
+          <SearchBar /> 
+        </Grid>
+        <Grid xs={2}></Grid>
+        <Grid xs={2}></Grid>
+        <Grid xs={8}>
+          <Typography sx={{ mb: 2 }}> People</Typography>
+        </Grid>
+        <Grid xs={2}></Grid>
+        <Grid xs={2}></Grid>
+        <Grid xs={8} >
+          <PeopleList />
+          {count > 10 && <Pages />}
+        </Grid>
+        <Grid xs={2}></Grid>
+      </Grid>
+    </Box>
   );
 }
 
-export default App;
